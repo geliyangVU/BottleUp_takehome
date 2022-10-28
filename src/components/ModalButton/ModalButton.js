@@ -35,11 +35,13 @@ const ModalButton = () => {
       .catch((err) => {
         console.log("Creation failed", err);
       });
+
+    toggleModal();
   };
 
   return (
     <div className="App">
-      <button onClick={toggleModal}>Add teammate</button>
+      <button onClick={toggleModal}>Join the team!</button>
 
       <Modal
         isOpen={isOpen}
