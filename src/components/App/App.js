@@ -1,14 +1,14 @@
-import React from 'react';
-import axios from 'axios';
-import TeamMember from '../TeamMember';
-import './App.css';
+import React from "react";
+import axios from "axios";
+import TeamMember from "../TeamMember";
+import "./App.css";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       team: [],
-      loading: true
+      loading: true,
     };
   }
 
@@ -17,7 +17,7 @@ class App extends React.Component {
       await this.fetchInitialData();
     } catch (error) {
       // try again after half a second if fails due to race condition
-      console.log('retrying initial data request...');
+      console.log("retrying initial data request...");
       setTimeout(async () => {
         await this.fetchInitialData();
       }, 500);
@@ -25,10 +25,10 @@ class App extends React.Component {
   }
 
   async fetchInitialData() {
-    const response = await axios.get('/team');
+    const response = await axios.get("/team");
     this.setState({
       team: response.data,
-      loading: false
+      loading: false,
     });
   }
 
@@ -40,7 +40,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <div className="team-grid" />
-        {this.state.team.map(member => (
+        {this.state.team.map((member) => (
           <TeamMember
             key={member.id}
             name={`${member.firstName} ${member.lastName}`}
@@ -51,7 +51,12 @@ class App extends React.Component {
           />
         ))}
         {/* Make this new team member link to your form! */}
-        <TeamMember id="new" name="Join us!" title="New Teammate" />
+        <TeamMember
+          id="new"
+          name="Join us!"
+          title="New Teammate"
+          buttonDisplay="True"
+        />
       </div>
     );
   }
